@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER_PORT:8092}
+spring:
+  application:
+    name: authorization-service
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    show-sql: ${SHOW_SQL:false}
+    database: postgresql
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false
+        jdbc:
+          time_zone: UTC
+        default_schema: authorisation
+      jdbc:
+        batch_size: 100
+      order_inserts: true
+      order_updates: true
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}
+    password: ${DB_PASSWORD:password}
+    username: ${DB_USERNAME:postgres}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: authorisation
+    liquibase-schema: authorisation
+jwt:
+  secret: ${JWT_SECRET}
+  validity: ${JWT_VALIDITY:1440000}
+  issuer: "${spring.application.name}"
+
