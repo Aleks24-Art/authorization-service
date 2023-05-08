@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import ua.aleksenko.authorizationservice.model.dto.AuthenticationResponseDto;
 import ua.aleksenko.authorizationservice.model.dto.RegistrationRequestDto;
 import ua.aleksenko.authorizationservice.service.RegistrationService;
 
@@ -18,7 +19,7 @@ public class RegistrationController {
 	private final RegistrationService registrationService;
 
 	@PostMapping
-	public void registerUser(@Valid @RequestBody RegistrationRequestDto dto) {
-		registrationService.registerUser(dto);
+	public AuthenticationResponseDto registerUser(@Valid @RequestBody RegistrationRequestDto dto) {
+		return registrationService.registerUser(dto);
 	}
 }

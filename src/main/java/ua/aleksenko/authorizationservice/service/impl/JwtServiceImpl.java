@@ -33,7 +33,7 @@ public class JwtServiceImpl implements JwtService {
 				.withSubject(user.getEmail())
 				.withIssuer(issuer)
 				.withClaim("role", user.getRole().toString())
-				.withExpiresAt(new Date(System.currentTimeMillis() + validityInMilli))
+					.withExpiresAt(new Date(System.currentTimeMillis() + validityInMilli))
 				.withIssuedAt(new Date(System.currentTimeMillis()))
 				.sign(Algorithm.HMAC256(secretKey));
 	}

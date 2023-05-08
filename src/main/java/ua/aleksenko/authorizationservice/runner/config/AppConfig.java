@@ -1,4 +1,4 @@
-package ua.aleksenko.authorizationservice.config;
+package ua.aleksenko.authorizationservice.runner.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
