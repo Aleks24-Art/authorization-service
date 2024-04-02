@@ -22,44 +22,45 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http
-				.csrf().disable()
-				.formLogin().disable()
-				.httpBasic().disable()
-				.sessionManagement(sm -> sm.sessionCreationPolicy(STATELESS))
-				.authorizeHttpRequests()
-				.requestMatchers("/api/v1/registration", "/api/v1/login", "/api/v1/token/validate")
-				.permitAll();
-		return http.build();
-	}
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf().disable()
+        .formLogin().disable()
+        .httpBasic().disable()
+        .sessionManagement(sm -> sm.sessionCreationPolicy(STATELESS))
+        .authorizeHttpRequests()
+        .requestMatchers("/api/v1/registration", "/api/v1/login", "/api/v1/user/profile/update",
+            "/api/v1/token/validate", "/api/v1/reset-password","/api/v1/user/profile/{token}")
+        .permitAll();
+    return http.build();
+  }
 
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOriginPatterns(List.of("*"));
-		configuration.setAllowedMethods(List.of("*"));
-		configuration.setAllowedHeaders(List.of("*"));
-		configuration.setAllowCredentials(true);
-		configuration.setExposedHeaders(List.of("*"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOriginPatterns(List.of("*"));
+    configuration.setAllowedMethods(List.of("*"));
+    configuration.setAllowedHeaders(List.of("*"));
+    configuration.setAllowCredentials(true);
+    configuration.setExposedHeaders(List.of("*"));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+  }
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(@NonNull CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOriginPatterns("*")
-						.allowedMethods("*")
-						.allowedHeaders("*")
-						.allowCredentials(true)
-						.exposedHeaders("*");
-			}
-		};
-	}
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(@NonNull CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowedOriginPatterns("*")
+            .allowedMethods("*")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .exposedHeaders("*");
+      }
+    };
+  }
 }

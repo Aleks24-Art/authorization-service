@@ -41,6 +41,14 @@ public class User implements UserDetails {
 
 	private String lastName;
 
+	private Integer age;
+
+	private String gender;
+
+	private String address;
+
+	private String website;
+
 	private String email;
 
 	@ToString.Exclude
