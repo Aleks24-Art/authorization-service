@@ -21,5 +21,6 @@ public class TokenController {
 	public void validateToken(@RequestParam String token) {
 		log.info("Try to validate token: {}", token);
 		jwtService.validateToken(token);
+		log.info("Valid");
 	}
 }

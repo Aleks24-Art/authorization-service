@@ -32,9 +32,9 @@ spring:
     default-schema: authorisation
     liquibase-schema: authorisation
 jwt:
-  secret: ${JWT_SECRET}
+  secret: ${JWT_SECRET:secret}
   validity: ${JWT_VALIDITY:86400000}
   issuer: "${spring.application.name}"
 admin:
-  email: ${ADMIN_EMAIL}
-  password: ${ADMIN_PASSWORD}
+  email: ${ADMIN_EMAIL:admin@gmail.com}
+  password: ${ADMIN_PASSWORD:password}
