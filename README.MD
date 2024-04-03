@@ -1,7 +1,9 @@
 # Authorisation service
 
 ## Description
+
 Service that keeps functionality for:
+
 - Registration new users
 - Login
 - Reset password
@@ -9,12 +11,15 @@ Service that keeps functionality for:
 - Validate token
 
 ## Run Application
-1) Start DB for service 
+
+1) Start DB for service
+
 ```bash
-   docker-compose start db
+docker-compose start db
 ```
 
-2) Run app 
+2) Run app
+
 ```bash
-   mvn clean package
+mvn clean package
 ```
